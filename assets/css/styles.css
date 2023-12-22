@@ -21,6 +21,14 @@ a:hover {
     color: #555555;
 }
 
+.alert_green{
+    color: green;
+}
+
+.alert_red{
+    color:red;
+}
+
 /* container*/
 
 .container {
@@ -153,7 +161,9 @@ a:hover {
 }
 
 /* formularios */
-
+.form_container{
+    width: 50%;
+}
 label,
 input[type="text"],
 input[type="password"],
@@ -210,22 +220,24 @@ button{
     margin-top: 10px;
 }
 
-/* central */
 #central{
     width: 72%;
     min-height: 500px;
     float: right;
     border-left: 1px solid #ccc;
-    box-shadow: -5px -1px 5px #DDD;
+    box-shadow: -5px -1px 5px #ddd;
+    padding:25px;
 }
+
 #central h1{
     font-size: 24px;
     font-weight: normal;
     letter-spacing: 1px;
-    border-bottom:1px solid #ccc;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
     margin-bottom: 20px;
     padding: 20px;
-    text-align: center;
+    padding-top: 0px;
 }
 
 /* productos */
