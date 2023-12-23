@@ -204,5 +204,75 @@ class Productos
         $productos=$this->conexiondb->query("SELECT * FROM productos ORDER BY id DESC");
         return $productos;
     }
+
+    public function getOne(){
+        $producto=$this->conexiondb->query("SELECT * FROM productos WHERE id = {$this->getId()}");
+        return $producto->fetch_object();
+    }
+
+    public function save(){
+        $nombre = $this->getNombre();
+        $descripcion = $this->getDescripcion();
+        $categoria = $this->getCategoria_id();
+        $precio = $this->getPrecio();
+        $stock = $this->getStock();
+        $imagen = $this->getImagen();
+
+        // Escapa los valores y hashea la contraseña
+        $nombre = $this->conexiondb->real_escape_string($nombre);
+        $descripcion = $this->conexiondb->real_escape_string($descripcion);
+        $precio = $this->conexiondb->real_escape_string($precio);
+        $stock = $this->conexiondb->real_escape_string($stock);
+
+        // Crea la sentencia SQL con los valores
+        $sql = "INSERT INTO productos VALUES(NULL, $categoria ,'$nombre', '$descripcion', '$precio', '$stock', NULL, CURDATE(), '$imagen');";
+        $save = $this->conexiondb->query($sql);
+
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+        return $result;
+    }
+
+    public function edit(){
+        $nombre = $this->getNombre();
+        $descripcion = $this->getDescripcion();
+        $categoria = $this->getCategoria_id();
+        $precio = $this->getPrecio();
+        $stock = $this->getStock();
+
+        $nombre = $this->conexiondb->real_escape_string($nombre);
+        $descripcion = $this->conexiondb->real_escape_string($descripcion);
+        $precio = $this->conexiondb->real_escape_string($precio);
+        $stock = $this->conexiondb->real_escape_string($stock);
+
+
+        $sql = "UPDATE productos SET categoria_id = '$categoria' , nombre = '$nombre', descripcion='$descripcion', precio=$precio, stock=$stock";
+        
+        if($this->getImagen() != null);{
+            $sql .=", imagen = '{$this->getImagen()}'";
+        }
+
+        $sql .= " WHERE id = {$this->id};";
+        $save = $this->conexiondb->query($sql);
+
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+        return $result;
+    }
+
+    public function delete(){
+        $id= $this->getId();
+        $sql = "DELETE FROM productos WHERE id='$id';";
+        $delete=$this->conexiondb->query($sql);
+        $result=false;
+        if ($delete) {
+            $result = true;
+        }
+        return $result;
+    }
 }
 ?>
