@@ -18,10 +18,10 @@
         <ul>
             <?php if ($_SESSION['admin']): ?>
                 <li>
-                    <a href="">Gestionar Categorias</a>
+                    <a href="<?=base_url?>categoria/index">Gestionar Categorias</a>
                 </li>
                 <li>
-                    <a href="">Gestionar Productos</a>
+                    <a href="<?=base_url?>producto/gestion">Gestionar Productos</a>
                 </li>
                 <li>
                     <a href="">Gestionar Pedidos</a>
@@ -33,6 +33,10 @@
                 </li>
                 <li>
                     <a href="<?= base_url ?>usuario/logout">Cerrar Sesión</a>
+                </li>
+            <?php else:?>
+                <li>
+                    <a href="<?= base_url ?>usuario/registro">Registrarse</a>
                 </li>
             <?php endif; ?>
         </ul>
