@@ -1,5 +1,6 @@
 <?php
 require_once 'models/CategoriaModel.php';
+require_once 'models/ProductosModel.php';
 class categoriaController{
     public function index(){
         Utils::isAdmin();
@@ -24,5 +25,20 @@ class categoriaController{
             }
         }
         header("Location:" . base_url."categoria/index");
+    }
+
+    public function ver(){
+        if(isset($_GET['id'])){
+            $categoria = new Categoria();
+            $categoria->setId($_GET['id']);
+            $categoria = $categoria->getOne();
+
+            $productos = new Productos();
+            $productos->setCategoria_Id($_GET['id']);
+            $productos = $productos->getAllCategoria();
+
+        }
+        require_once 'views/categoria/ver.php';
+
     }
 }

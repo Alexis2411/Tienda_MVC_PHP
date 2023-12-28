@@ -205,9 +205,19 @@ class Productos
         return $productos;
     }
 
+    public function getAllCategoria(){
+        $productos=$this->conexiondb->query("SELECT p.*, c.nombre AS 'catnombre' FROM productos p INNER JOIN categorias c ON c.id = p.categoria_id WHERE p.categoria_id = {$this->getCategoria_id()} ORDER BY id DESC");
+        return $productos;
+    }
+
     public function getOne(){
         $producto=$this->conexiondb->query("SELECT * FROM productos WHERE id = {$this->getId()}");
         return $producto->fetch_object();
+    }
+
+    public function getRandom($limit){
+        $producto=$this->conexiondb->query("SELECT * FROM productos ORDER BY RAND() LIMIT $limit");
+        return $producto;
     }
 
     public function save(){

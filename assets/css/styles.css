@@ -279,16 +279,26 @@ button{
 }
 
 /* productos */
+.product a{
+    color: black;
+    text-decoration: none;
+}
+
+.product a:hover{
+    color: #555;
+}
+
 .product{
     width: 30%;
     float: left;
     margin-left: 10px;
     margin-right: 10px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .product img {
-    width: 100px;
+    height: 150px;
     margin-bottom: 10px;
 }
 
@@ -301,6 +311,43 @@ button{
     font-weight: bold;
     color: #555;
     margin-bottom: 10px;
+}
+
+#detail-product{
+    width: 100%;
+}
+
+#detail-product .image{
+    width: 40%;
+    float: left;
+    display: block;
+    margin-right: 40px;
+}
+
+#detail-product img{
+    width: 100%;
+    float: left;
+    display: block;
+}
+
+#detail-product .data{
+    width: 50%;
+    float: right;
+}
+
+#detail-product .description{
+    margin-bottom: 20px;
+}
+
+#detail-product .price{
+    font-size: 36px;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+#detail-product .button{
+    width: 200px;
+    text-align: center;
 }
 
 /* footer */

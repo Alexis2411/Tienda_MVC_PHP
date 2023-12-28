@@ -24,12 +24,13 @@
         <label for="categoria">Categoria</label>
         <?php $categorias = Utils::showCategorias() ?>
         <select name="categoria">
-            <?php while ($categoria = $categorias->fetch_object()): ?>
-                <option value="<?= $categoria->id ?>"<?=isset($datos) && is_object($datos) && $categoria->id == $datos->$categoria_id ? 'selected': ""?>>
-                    <?= $categoria->nombre ?>
-                </option>
-            <?php endwhile; ?>
-        </select>
+    <?php while ($categoria = $categorias->fetch_object()): ?>
+        <option value="<?= $categoria->id ?>"<?=isset($datos) && is_object($datos) && $categoria->id == $datos->categoria_id ? ' selected' : '' ?>>
+            <?= $categoria->nombre ?>
+        </option>
+    <?php endwhile; ?>
+</select>
+
 
         <label for="imagen">Imagen</label>
         <?php if(isset($datos) && is_object($datos) && !empty($datos->imagen)):?>

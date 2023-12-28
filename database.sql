@@ -30,7 +30,7 @@ VALUES
 CREATE TABLE categorias(
     id INT (255) AUTO_INCREMENT NOT NULL,
     nombre VARCHAR(100) NOT NULL,
-    CONSTRAINT pk_categorias PRIMARY KEY (id),
+    CONSTRAINT pk_categorias PRIMARY KEY (id)
 ) ENGINE = InnoDB;
 
 INSERT INTO
@@ -81,6 +81,6 @@ CREATE TABLE lineas_pedidos(
     pedido_id INT(255) NOT NULL,
     producto_id INT(255) NOT NULL,
     CONSTRAINT pk_lineas_pedidos PRIMARY KEY (id),
-    CONSTRAINT fk_linea_pedido FOREIGN KEY(pedido_id) REFERENCES pedido(id),
+    CONSTRAINT fk_linea_pedido FOREIGN KEY(pedido_id) REFERENCES pedidos(id),
     CONSTRAINT fk_linea_producto FOREIGN KEY(producto_id) REFERENCES productos(id)
 ) ENGINE = InnoDB;

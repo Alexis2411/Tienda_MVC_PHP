@@ -31,6 +31,12 @@ class Categoria{
         return $resultado;
     }
 
+    public function getOne() {
+        $sql="SELECT * FROM categorias WHERE id={$this->getid()}";
+        $resultado=$this->conexiondb->query($sql);
+        return $resultado->fetch_object();
+    }
+
     public function saveCategoria(){
         $nombre = $this->getNombre();
         $nombre = $this->conexiondb->real_escape_string($nombre);
