@@ -18,7 +18,7 @@
                     </h2>
                     <p>$30 USD</p>
                 </a>
-                <a href="" class="button">Comprar</a>
+                <a href="<?=base_url?>carrito/add&id=<?=$product->id?>" class="button">Comprar</a>
             </div>
         <?php endwhile; ?>
     <?php endif; ?>

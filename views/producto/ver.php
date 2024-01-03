@@ -17,7 +17,7 @@
             <p class="price">$
                 <?= $datos->precio ?> USD
             </p>
-            <a href="" class="button">Comprar</a>
+            <a href="<?=base_url?>carrito/add&id=<?=$datos->id?>" class="button">Comprar</a>
         </div>
     </div>
 <?php else: ?>
