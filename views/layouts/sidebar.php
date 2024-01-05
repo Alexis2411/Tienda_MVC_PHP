@@ -4,9 +4,9 @@
         <h3>Mi carrito</h3>
         <ul>
             <?php $valor=Utils::stateCarrito();?>
-            <li><a href="<?=base_url?>carrito/index">Productos(<?=$valor['count']?>)</li>
-            <li><a href="<?=base_url?>carrito/index">Total( $ <?=$valor['total']?>)</li>
-            <li><a href="<?=base_url?>carrito/index">Ver carrito</li>
+            <li><a href="<?=base_url?>carrito/index">Productos(<?=$valor['count']?>)></a></li>
+            <li><a href="<?=base_url?>carrito/index">Total( $ <?=$valor['total']?>)></a></li>
+            <li><a href="<?=base_url?>carrito/index">Ver carrito></a></li>
         </ul>
     </div>
     <div id="login" class="block_aside">
