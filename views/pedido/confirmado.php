@@ -27,28 +27,28 @@
                 <th>Precio</th>
                 <th>Cantidad</th>
             </tr>
-             <?php while ($producto = $pedido_productos->fetch_object()):?>
+             <?php foreach ($pedido_productos as $producto):?>
                 <tr>
                     <td>
-                        <?php if ($producto->imagen != null): ?>
-                            <img src="<?= base_url ?>uploads/images/<?= $producto->imagen ?>" alt="" class="img_carrito">
+                        <?php if ($producto['imagen'] != null): ?>
+                            <img src="<?= base_url ?>uploads/images/<?= $producto['imagen'] ?>" alt="" class="img_carrito">
                         <?php else: ?>
                             <img src="<?= base_url ?>assets/img/camiseta.png" alt="Sin imágen" class="img_carrito">
                         <?php endif; ?>
                     </td>
                     <td>
-                        <a href="<?= base_url ?>producto/ver&id=<?=$producto->id?>"> <?= $producto->nombre ?>
+                        <a href="<?= base_url ?>producto/ver&id=<?=$producto['id']?>"> <?= $producto['nombre'] ?>
                         </a>
                     </td>
                     <td>
-                        <?= $producto->precio ?>
+                        <?= $producto['precio'] ?>
                     </td>
                     <td>
-                        <?= $producto->unidades ?>
+                        <?= $producto['unidades'] ?>
                     </td>
                 </tr>
 
-             <?php endwhile;?>
+             <?php endforeach;?>
         </table>
 
 

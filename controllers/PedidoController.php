@@ -1,5 +1,6 @@
 <?php
 require_once 'models/PedidoModel.php';
+require_once 'models/ProductosModel.php';
 class pedidoController{
     public function hacer(){
         require_once 'views/pedido/hacer.php';
@@ -47,7 +48,12 @@ class pedidoController{
             $pedido->setUsuarioId($identity->id);
             $pedido=$pedido->getOneByUser();
             $pedido_productos = new Pedido();
-            $pedido_productos = $pedido_productos->getProductosByPedido($pedido->id);
+            $pedido_productos = $pedido_productos->getProductosByPedido($pedido->id)->fetch_all(MYSQLI_ASSOC);
+            foreach ($pedido_productos as $prod){
+                $almacen = new Productos();
+                $almacen->setId($prod['id']);
+                $almacen->downStock($prod['unidades']);
+            }
         }
         require_once 'views/pedido/confirmado.php';
     }

@@ -201,22 +201,22 @@ class Productos
     }
 
     public function getAll(){
-        $productos=$this->conexiondb->query("SELECT * FROM productos ORDER BY id DESC");
+        $productos=$this->conexiondb->query("SELECT * FROM productos WHERE stock > 0 ORDER BY id DESC");
         return $productos;
     }
 
     public function getAllCategoria(){
-        $productos=$this->conexiondb->query("SELECT p.*, c.nombre AS 'catnombre' FROM productos p INNER JOIN categorias c ON c.id = p.categoria_id WHERE p.categoria_id = {$this->getCategoria_id()} ORDER BY id DESC");
+        $productos=$this->conexiondb->query("SELECT p.*, c.nombre AS 'catnombre' FROM productos p INNER JOIN categorias c ON c.id = p.categoria_id WHERE p.categoria_id = {$this->getCategoria_id()} AND stock > 0 ORDER BY id DESC");
         return $productos;
     }
 
     public function getOne(){
-        $producto=$this->conexiondb->query("SELECT * FROM productos WHERE id = {$this->getId()}");
+        $producto=$this->conexiondb->query("SELECT * FROM productos WHERE id = {$this->getId()} AND stock > 0");
         return $producto->fetch_object();
     }
 
     public function getRandom($limit){
-        $producto=$this->conexiondb->query("SELECT * FROM productos ORDER BY RAND() LIMIT $limit");
+        $producto=$this->conexiondb->query("SELECT * FROM productos WHERE stock > 0 ORDER BY RAND() LIMIT $limit");
         return $producto;
     }
 
@@ -281,6 +281,24 @@ class Productos
         $result=false;
         if ($delete) {
             $result = true;
+        }
+        return $result;
+    }
+
+    public function downStock($stockToReduce)
+    {
+        $id = $this->getId();
+        $stock = $this->conexiondb->query("SELECT stock FROM productos WHERE id='$id'")->fetch_assoc()['stock'];
+        // Check if there is enough stock to reduce
+        if ($stock >= $stockToReduce) {
+            $sql = "UPDATE productos SET stock=stock-'$stockToReduce' WHERE id='$id';";
+            $delete = $this->conexiondb->query($sql);
+            $result = false;
+            if ($delete) {
+                $result = true;
+            }
+        } else {
+            $result = false; // or you can return a custom error message
         }
         return $result;
     }
